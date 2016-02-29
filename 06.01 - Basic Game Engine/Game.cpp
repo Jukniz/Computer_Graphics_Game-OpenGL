@@ -174,16 +174,34 @@ void Game::renderGame() {
 		//Bind the GLSL program. Only one code GLSL can be used at the same time
 	_colorProgram.use();
 
+	/*GameObject currentElement; // Variable temporal
+
+	glm::mat4 modelMatrix; //Indentity matrix
+	modelMatrix = glm::translate(modelMatrix, currentElement._translate);
+
+	//The fvec3 rotation vector only has sense if angle is different to 0
+	if (currentElement._angle != 0) {
+
+		modelMatrix = glm::rotate(modelMatrix, glm::radians(currentElement._angle), currentElement._rotation);
+	}
+
+	modelMatrix = glm::scale(modelMatrix, currentElement._scale);
+	//Pass the model matrix
+
+	GLuint modelMatrixUniform = _colorProgram.getUniformLocation("modelMatrix");
+	glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+
+	_openGLBuffers.sendDataToGPU(_gameElements.getData(currentElement._objectType), _gameElements.getNumVertices(currentElement._objectType));
+
+	*/
 	//For each one of the elements: Each object MUST BE RENDERED based on its position, rotation and scale data
 	for (int i = 0; i < _gameElements.getNumGameElements(); i++) {			
-		currentRenderedGameElement = _gameElements.getGameElement(i);		
-		
-			
-		
+		currentRenderedGameElement = _gameElements.getGameElement(i);			
 			//Send data to GPU
 		_openGLBuffers.sendDataToGPU(_gameElements.getData(currentRenderedGameElement._objectType), _gameElements.getNumVertices(currentRenderedGameElement._objectType));
-
 	}
+	
+	
 
 	//Unbind the program
 	_colorProgram.unuse();
