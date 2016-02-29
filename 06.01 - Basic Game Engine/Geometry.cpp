@@ -21,10 +21,10 @@ Geometry::~Geometry(){
 /*
 * Load the game elements from a text file
 */
-void Geometry::loadGameElements(char fileName[100]){	
+void Geometry::loadGameElements(char fileName[100]) {
 	/* Text format
 	<number of game elements>
-	<type of game element> <vec3 position> <angle> <vec3 rotation> <vec3 scale>	
+	<type of game element> <vec3 position> <angle> <vec3 rotation> <vec3 scale>
 	*/
 	int numGameElements;
 	GameObject tempObject;
@@ -32,17 +32,105 @@ void Geometry::loadGameElements(char fileName[100]){
 	ifstream file;
 	file.open(fileName);
 
-	if (file.is_open()){
-		//TODO: Read the content and add it into the data structure
+	if (file.is_open()) {
+		int numElements;
+		file >> numElements;
 
+		for (int i = 0; i < numElements; i++) {
+
+			file >> tempObject._objectType;
+			file >> tempObject._translate.x;
+			file >> tempObject._translate.y;
+			file >> tempObject._translate.z;
+			file >> tempObject._angle;
+			file >> tempObject._rotation.x;
+			file >> tempObject._rotation.y;
+			file >> tempObject._rotation.z;
+			file >> tempObject._scale.x;
+			file >> tempObject._scale.y;
+			file >> tempObject._scale.z;
+
+			_listOfObjects.push_back(tempObject);
+		}
 
 		file.close();
 	}
-	else{
-		string message = "The file "+ string(fileName)+" doesn't exists";
+	else {
+		string message = "The file " + string(fileName) + " doesn't exists";
 		ErrorManagement::errorRunTime(message);
 	}
 
+}
+
+void Geometry::createGeometry() {
+
+	//set position of every vertex
+	for (int i = 0; i < NUMBASICOBJECTS; i++) {
+		_numVertices[i] = 36;
+		_verticesData[i] = new  Vertex[_numVertices[i]];
+
+		_verticesData[i][0].setPosition(1, 1, -1); //triangulo frontal 1
+		_verticesData[i][1].setPosition(-1, 1, -1);
+		_verticesData[i][2].setPosition(-1, -1, -1);
+
+		_verticesData[i][3].setPosition(1, 1, -1); //triangulo frontal 2
+		_verticesData[i][4].setPosition(-1, -1, -1);
+		_verticesData[i][5].setPosition(1, -1, -1);
+
+		_verticesData[i][6].setPosition(1, 1, 1); //lateral derecho 1
+		_verticesData[i][7].setPosition(1, 1, -1);
+		_verticesData[i][8].setPosition(1, -1, -1);
+
+		_verticesData[i][9].setPosition(1, -1, 1); //lateral derecho 2
+		_verticesData[i][10].setPosition(1, 1, 1);
+		_verticesData[i][11].setPosition(1, -1, -1);
+
+		_verticesData[i][12].setPosition(1, 1, 1); //superior 1
+		_verticesData[i][13].setPosition(-1, 1, 1);
+		_verticesData[i][14].setPosition(-1, 1, -1);
+
+		_verticesData[i][15].setPosition(1, 1, 1);//superior 2
+		_verticesData[i][16].setPosition(-1, 1, -1);
+		_verticesData[i][17].setPosition(1, 1, -1);
+
+		_verticesData[i][18].setPosition(-1, 1, -1);//lateral izquierdo 1
+		_verticesData[i][19].setPosition(-1, 1, 1);
+		_verticesData[i][20].setPosition(-1, -1, 1);
+
+		_verticesData[i][21].setPosition(-1, 1, -1); //lateral izquierdo 2
+		_verticesData[i][22].setPosition(-1, -1, 1);
+		_verticesData[i][23].setPosition(-1, -1, -1);
+
+		_verticesData[i][24].setPosition(1, -1, 1); //inferior 1
+		_verticesData[i][25].setPosition(-1, -1, 1);
+		_verticesData[i][26].setPosition(-1, -1, -1);
+
+		_verticesData[i][27].setPosition(1, -1, 1); //inferior 2
+		_verticesData[i][28].setPosition(-1, -1, -1);
+		_verticesData[i][29].setPosition(1, -1, -1);
+
+		_verticesData[i][30].setPosition(1, 1, 1);//posterior 1	
+		_verticesData[i][31].setPosition(-1, 1, 1);
+		_verticesData[i][32].setPosition(-1, -1, 1);
+
+		_verticesData[i][33].setPosition(1, 1, 1);//posterior 2
+		_verticesData[i][34].setPosition(-1, -1, 1);
+		_verticesData[i][35].setPosition(1, -1, 1);
+
+		//set color of every vertex
+		switch (i)
+		{
+		case 0:
+			for (int j = 0; j < _numVertices[0]; j++) _verticesData[0][j].setColor(0, 0, 255, 255);
+			break;
+		case 1:
+			for (int j = 0; j < _numVertices[1]; j++) _verticesData[1][j].setColor(255, 0, 0, 255);
+			break;
+		default:
+			for (int j = 0; j < _numVertices[i]; j++) _verticesData[i][j].setColor(255, 255, 255, 255);
+			break;
+		}
+	}
 }
 
 /*

@@ -1,0 +1,76 @@
+﻿Build started 29/02/2016 11:21:28.
+     1>Project "C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\06.01 - Basic Game Engine\06.01 - Basic Game Engine.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt ErrorManagement.cpp "Ex06.01-Main.cpp" FPSLimiter.cpp GLSLProgram.cpp Game.cpp Geometry.cpp InputManager.cpp OpenGLBuffers.cpp Window.cpp
+         Window.cpp
+         OpenGLBuffers.cpp
+         InputManager.cpp
+         Geometry.cpp
+     1>c:\users\cho\documents\computer_graphics_game-opengl\06.01 - basic game engine\geometry.cpp(29): warning C4101: 'numGameElements': unreferenced local variable
+     1>c:\users\cho\documents\computer_graphics_game-opengl\06.01 - basic game engine\geometry.cpp(71): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+         Game.cpp
+         GLSLProgram.cpp
+         FPSLimiter.cpp
+         Ex06.01-Main.cpp
+         ErrorManagement.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\x64\Debug\06.01 - Basic Game Engine.exe" /INCREMENTAL /NOLOGO sdl2.lib sdl2main.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\x64\Debug\06.01 - Basic Game Engine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\x64\Debug\06.01 - Basic Game Engine.lib" /MACHINE:X64 x64\Debug\ErrorManagement.obj
+         "x64\Debug\Ex06.01-Main.obj"
+         x64\Debug\FPSLimiter.obj
+         x64\Debug\Game.obj
+         x64\Debug\Geometry.obj
+         x64\Debug\GLSLProgram.obj
+         x64\Debug\InputManager.obj
+         x64\Debug\OpenGLBuffers.obj
+         x64\Debug\Window.obj
+     1>ErrorManagement.obj : error LNK2019: unresolved external symbol SDL_Quit referenced in function "public: static void __cdecl ErrorManagement::errorRunTime(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?errorRunTime@ErrorManagement@@SAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>FPSLimiter.obj : error LNK2019: unresolved external symbol SDL_GetTicks referenced in function "public: __cdecl FPSLimiter::FPSLimiter(bool,int,bool)" (??0FPSLimiter@@QEAA@_NH0@Z)
+     1>FPSLimiter.obj : error LNK2019: unresolved external symbol SDL_Delay referenced in function "public: void __cdecl FPSLimiter::forceSynchronization(void)" (?forceSynchronization@FPSLimiter@@QEAAXXZ)
+     1>Game.obj : error LNK2019: unresolved external symbol SDL_PollEvent referenced in function "private: void __cdecl Game::processInput(void)" (?processInput@Game@@AEAAXXZ)
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewBindAttribLocation
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewDetachShader
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewDisableVertexAttribArray
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetAttribLocation
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+     1>GLSLProgram.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+     1>OpenGLBuffers.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_CreateWindow referenced in function "public: int __cdecl Window::create(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,unsigned int)" (?create@Window@@QEAAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHI@Z)
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_GL_SetAttribute referenced in function "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_GL_CreateContext referenced in function "public: int __cdecl Window::create(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,unsigned int)" (?create@Window@@QEAAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHI@Z)
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_GL_SetSwapInterval referenced in function "public: int __cdecl Window::create(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,unsigned int)" (?create@Window@@QEAAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHI@Z)
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_GL_SwapWindow referenced in function "public: void __cdecl Window::swapBuffer(void)" (?swapBuffer@Window@@QEAAXXZ)
+     1>Window.obj : error LNK2019: unresolved external symbol SDL_Init referenced in function "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+     1>Window.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "public: int __cdecl Window::create(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int,int,unsigned int)" (?create@Window@@QEAAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHI@Z)
+     1>Window.obj : error LNK2001: unresolved external symbol __imp_glewExperimental
+     1>MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+     1>C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\\deps\lib\sdl2.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+     1>C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\\deps\lib\sdl2main.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+     1>C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\\deps\lib\glew32.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+     1>C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\x64\Debug\06.01 - Basic Game Engine.exe : fatal error LNK1120: 40 unresolved externals
+     1>Done Building Project "C:\Users\cho\Documents\Computer_Graphics_Game-OpenGL\06.01 - Basic Game Engine\06.01 - Basic Game Engine.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:05.33

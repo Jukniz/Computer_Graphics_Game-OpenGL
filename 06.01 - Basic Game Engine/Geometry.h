@@ -24,5 +24,6 @@ public:
 	int getNumVertices(int objectID);
 	int getNumGameElements();
 	GameObject & getGameElement(int objectID);
+	void createGeometry();
 };
 

@@ -177,9 +177,7 @@ void Game::renderGame() {
 	//For each one of the elements: Each object MUST BE RENDERED based on its position, rotation and scale data
 	for (int i = 0; i < _gameElements.getNumGameElements(); i++) {			
 		currentRenderedGameElement = _gameElements.getGameElement(i);		
-			//TODO: Compute its model transformation matrix
-
-			//TODO: Pass the matrix as an uniform variable 
+		
 			
 		
 			//Send data to GPU
