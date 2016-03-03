@@ -6,7 +6,12 @@
 #define BLUE_CUBE 0
 #define RED_CUBE 1
 #define WHITE_CUBE 2
-#define NUMBASICOBJECTS 3
+#define NUMCUBE 3
+#define SPACE_SHIP 3
+#define NUMBASICOBJECTS 4
+
+
+
 
 //This class stores and manipulates all the objects loaded from the text file
 class Geometry
@@ -24,6 +29,7 @@ public:
 	int getNumVertices(int objectID);
 	int getNumGameElements();
 	GameObject & getGameElement(int objectID);
-	void createGeometry();
+	void createGeometryCube();
+	void createGeometrySpaceShip();
 };
 

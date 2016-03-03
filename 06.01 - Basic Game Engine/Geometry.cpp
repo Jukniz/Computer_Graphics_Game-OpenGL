@@ -26,7 +26,6 @@ void Geometry::loadGameElements(char fileName[100]) {
 	<number of game elements>
 	<type of game element> <vec3 position> <angle> <vec3 rotation> <vec3 scale>
 	*/
-	int numGameElements;
 	GameObject tempObject;
 	glm::vec3 vector3fElements;
 	ifstream file;
@@ -62,20 +61,20 @@ void Geometry::loadGameElements(char fileName[100]) {
 
 }
 
-void Geometry::createGeometry() {
+void Geometry::createGeometryCube() {
 
 	//set position of every vertex
-	for (int i = 0; i < NUMBASICOBJECTS; i++) {
+	for (int i = 0; i < NUMCUBE; i++) {
 		_numVertices[i] = 36;
 		_verticesData[i] = new  Vertex[_numVertices[i]];
 
-		_verticesData[i][0].setPosition(1, 1, -1); //triangulo frontal 1
-		_verticesData[i][1].setPosition(-1, 1, -1);
-		_verticesData[i][2].setPosition(-1, -1, -1);
+		_verticesData[i][0].setPosition(1, 1, -1); //Triangulo fondo
+		_verticesData[i][1].setPosition(-1, -1, -1);
+		_verticesData[i][2].setPosition(-1, 1, -1);
 
-		_verticesData[i][3].setPosition(1, 1, -1); //triangulo frontal 2
-		_verticesData[i][4].setPosition(-1, -1, -1);
-		_verticesData[i][5].setPosition(1, -1, -1);
+		_verticesData[i][3].setPosition(1, 1, -1); //triangulo fondo 2
+		_verticesData[i][4].setPosition(1, -1, -1);
+		_verticesData[i][5].setPosition(-1, -1, -1);
 
 		_verticesData[i][6].setPosition(1, 1, 1); //lateral derecho 1
 		_verticesData[i][7].setPosition(1, 1, -1);
@@ -109,22 +108,23 @@ void Geometry::createGeometry() {
 		_verticesData[i][28].setPosition(-1, -1, -1);
 		_verticesData[i][29].setPosition(1, -1, -1);
 
-		_verticesData[i][30].setPosition(1, 1, 1);//posterior 1	
+		_verticesData[i][30].setPosition(1, 1, 1);//Frontal 1	
 		_verticesData[i][31].setPosition(-1, 1, 1);
 		_verticesData[i][32].setPosition(-1, -1, 1);
 
-		_verticesData[i][33].setPosition(1, 1, 1);//posterior 2
+		_verticesData[i][33].setPosition(1, 1, 1);//Frontal 2
 		_verticesData[i][34].setPosition(-1, -1, 1);
 		_verticesData[i][35].setPosition(1, -1, 1);
+		
 
 		//set color of every vertex
 		switch (i)
 		{
 		case 0:
-			for (int j = 0; j < _numVertices[0]; j++) _verticesData[0][j].setColor(0, 0, 255, 255);
+			for (int j = 0; j < _numVertices[i]; j++) _verticesData[i][j].setColor(0, 0, 255, 255);
 			break;
 		case 1:
-			for (int j = 0; j < _numVertices[1]; j++) _verticesData[1][j].setColor(255, 0, 0, 255);
+			for (int j = 0; j < _numVertices[i]; j++) _verticesData[i][j].setColor(255, 0, 0, 255);
 			break;
 		default:
 			for (int j = 0; j < _numVertices[i]; j++) _verticesData[i][j].setColor(255, 255, 255, 255);
@@ -132,6 +132,54 @@ void Geometry::createGeometry() {
 		}
 	}
 }
+
+
+void Geometry::createGeometrySpaceShip() {
+
+	_numVertices[SPACE_SHIP] = 12;
+	_verticesData[SPACE_SHIP] = new  Vertex[_numVertices[SPACE_SHIP]];
+
+
+	_verticesData[SPACE_SHIP][0].setPosition(0, 1, 0);
+	_verticesData[SPACE_SHIP][1].setPosition(-1, -1, 0);
+	_verticesData[SPACE_SHIP][2].setPosition(1, -1, 0);
+
+
+	_verticesData[SPACE_SHIP][3].setPosition(1, -1, 0);
+	_verticesData[SPACE_SHIP][4].setPosition(0, 1, 0);
+	_verticesData[SPACE_SHIP][5].setPosition(0, 0, 1);
+
+
+	_verticesData[SPACE_SHIP][6].setPosition(0, 1, 0);
+	_verticesData[SPACE_SHIP][7].setPosition(-1, -1, 0);
+	_verticesData[SPACE_SHIP][8].setPosition(0, 0, 1);
+
+
+	_verticesData[SPACE_SHIP][9].setPosition(-1, -1, 0);
+	_verticesData[SPACE_SHIP][10].setPosition(1, -1, 0);
+	_verticesData[SPACE_SHIP][11].setPosition(0, 0, 1);
+
+
+
+
+	for (int j = 0; j < _numVertices[SPACE_SHIP]; j++) {
+
+		if (j < 3) {
+			_verticesData[SPACE_SHIP][j].setColor(255, 0, 0, 255);
+		}
+		else if (j < 6) {
+			_verticesData[SPACE_SHIP][j].setColor(0, 255, 0, 255);
+		}
+		else if (j < 9) {
+			_verticesData[SPACE_SHIP][j].setColor(0, 0, 255, 255);
+		}
+		else {
+			_verticesData[SPACE_SHIP][j].setColor(255, 255, 255, 255);
+		}
+	
+	}
+}
+
 
 /*
 * Get the vertices data for an specific object
