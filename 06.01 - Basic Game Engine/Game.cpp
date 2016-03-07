@@ -145,15 +145,17 @@ void Game::executePlayerCommands() {
 		
 	}
 
-	if (_inputManager.isKeyPressed(SDLK_a)) {
-		
+	if (_inputManager.isKeyDown(SDLK_a) || _inputManager.isKeyPressed(SDLK_LEFT)) {
+		_gameElements.getGameElement(SPACE_SHIP)._translate.x -= 0.01;
 	}
+
+
 	if (_inputManager.isKeyPressed(SDLK_s)) {
 		
 	}
 
-	if (_inputManager.isKeyPressed(SDLK_d)) {
-		
+	if (_inputManager.isKeyDown(SDLK_d) || _inputManager.isKeyPressed(SDLK_RIGHT)) {
+		_gameElements.getGameElement(SPACE_SHIP)._translate.x += 0.01;
 	}
 	
 
@@ -163,8 +165,8 @@ void Game::executePlayerCommands() {
 * Update the game objects based on the physics
 */
 void Game::doPhysics() {
-
-
+	_gameElements.getGameElement(BLUE_CUBE)._translate.x+=0.01;
+	
 }
 
 /**

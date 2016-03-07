@@ -19,6 +19,10 @@ class Geometry
 	Vertex * _verticesData[NUMBASICOBJECTS];
 	int _numVertices[NUMBASICOBJECTS];
 	std::vector <GameObject> _listOfObjects;
+
+
+
+
 	
 
 public:
