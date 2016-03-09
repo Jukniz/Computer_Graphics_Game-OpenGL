@@ -65,7 +65,6 @@ void Geometry::createGeometryCube() {
 
 	//set position of every vertex
 	for (int i = 0; i < NUMCUBE; i++) {
-		std::cout << "hola "  << i<< std::endl;
 		_numVertices[i] = 36;
 		_verticesData[i] = new  Vertex[_numVertices[i]];
 

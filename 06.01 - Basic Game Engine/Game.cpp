@@ -1,6 +1,32 @@
 #include "Game.h"
 
 
+Game* Game::_instance = 0;
+
+Game* Game::getInstance() {
+	if (_instance == 0) {
+
+		Game game("Free porno de tetas de lara croft", 700, 700, true, 60, false);
+		if (_instance == 0) {
+			throw std::exception("System is not able to allocate memory for the game engine");
+		}
+
+	}
+	return _instance;
+}
+
+
+Game* Game::getInstance(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS){
+	if (_instance == 0) {
+		_instance = new Game(windowTitle, screenWidth, screenHeight,  enableLimiterFPS,  maxFPS,  printFPS);
+		if (_instance == 0) {
+			throw std::exception("System is not able to allocate memory for the game engine");
+		}
+	}
+	return _instance;
+}
+
+
 /**
 * Constructor
 * Note: It uses an initialization list to set the parameters
@@ -23,6 +49,7 @@ Game::Game(std::string windowTitle, int screenWidth, int screenHeight, bool enab
 */
 Game::~Game()
 {
+	delete _instance;
 }
 
 /*
@@ -51,7 +78,8 @@ void Game::initSystems() {
 
 	_gameElements.createGeometryCube();
 
-	_gameElements.createGeometrySpaceShip();
+	_spaceShip.init();
+
 }
 
 /*
@@ -146,7 +174,7 @@ void Game::executePlayerCommands() {
 	}
 
 	if (_inputManager.isKeyDown(SDLK_a) || _inputManager.isKeyPressed(SDLK_LEFT)) {
-		_gameElements.getGameElement(SPACE_SHIP)._translate.x -= 0.01;
+		_spaceShip.moveSpaceShip(false);
 	}
 
 
@@ -155,7 +183,7 @@ void Game::executePlayerCommands() {
 	}
 
 	if (_inputManager.isKeyDown(SDLK_d) || _inputManager.isKeyPressed(SDLK_RIGHT)) {
-		_gameElements.getGameElement(SPACE_SHIP)._translate.x += 0.01;
+		_spaceShip.moveSpaceShip(true);
 	}
 	
 
@@ -209,6 +237,11 @@ void Game::renderGame() {
 
 	//Swap the display buffers (displays what was just drawn)
 	_window.swapBuffer();
+}
+
+Geometry* Game::getGeometry()
+{
+	return &_gameElements;
 }
 
 

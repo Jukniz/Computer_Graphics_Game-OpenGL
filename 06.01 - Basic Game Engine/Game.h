@@ -15,18 +15,29 @@
 #include "Vertex.h"
 #include "Geometry.h"
 #include "InputManager.h"
+#include "SpaceShip.h"
 
 //Game has four possible states: INIT (Preparing environment), PLAY (Playing), EXIT (Exit from the game) or MENU (Game menu)
 enum class GameState{INIT, PLAY, EXIT, MENU};
 
 //This class manages the game execution
 class Game {
-	public:						
-		Game(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS);	//Constructor
+	public:			
+		static Game* getInstance();
+		static Game* getInstance(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS);
+		
 		~Game();					//Destructor
 		void run();					//Game execution
 
+
+		//Getters And Setters
+
+		Geometry* getGeometry();
+
+
 	private:
+		static Game* _instance;
+
 			//Attributes	
 		std::string _windowTitle;		//Window Title
 		int _screenWidth;				//Screen width in pixels				
@@ -38,9 +49,13 @@ class Game {
 		OpenGLBuffers _openGLBuffers;	//Manage the openGL buffers
 		Geometry _gameElements;			//Manage the game elements
 		InputManager _inputManager;		//Manage the input devices
+		SpaceShip _spaceShip;           //Space Ship
 
 		GLuint modelMatrixUniform;
 
+
+
+		Game(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS);	//Constructor
 			//Internal methods
 		void initSystems();
 		void initShaders();		
@@ -48,6 +63,9 @@ class Game {
 		void processInput();
 		void doPhysics();
 		void executePlayerCommands();
-		void renderGame();			
+		void renderGame();		
+
+
+		
 };
 
