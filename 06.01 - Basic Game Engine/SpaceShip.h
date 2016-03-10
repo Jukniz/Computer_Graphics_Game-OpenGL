@@ -12,7 +12,8 @@ public:
 
 	void init();
 
-	void moveSpaceShip(bool direction); //True -> Derecha | Izquierda <- False [En un futuro podrà ser un INT si hay mas direcciones]
+	void updateRotation();
+	void moveSpaceShip(int direction); //1 izq 2 Arriba 3 derecha 4 abajo]
 									
 };
 

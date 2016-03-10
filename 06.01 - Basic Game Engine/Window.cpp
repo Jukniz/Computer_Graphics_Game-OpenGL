@@ -74,6 +74,9 @@ int Window::create(std::string windowName, int screenWidth, int screenHeight, un
 	//If it's enable, it automatically syncs the fps with the monitor, so, we don't need to use SDL_Delay
 	SDL_GL_SetSwapInterval(0);
 	
+	glEnable(GL_DEPTH_TEST); //Activamos Z-Buffer
+	glViewport(0, 0, screenWidth, screenHeight); //Define the viewport
+
 	return 0;
 }
 

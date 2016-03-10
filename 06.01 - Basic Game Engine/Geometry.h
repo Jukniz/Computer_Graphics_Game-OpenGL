@@ -3,7 +3,7 @@
 #include <vector>
 #include "GameObject.h"
 
-#define BLUE_CUBE 0
+#define ENEMY_01 0
 #define RED_CUBE 1
 #define WHITE_CUBE 2
 #define NUMCUBE 3

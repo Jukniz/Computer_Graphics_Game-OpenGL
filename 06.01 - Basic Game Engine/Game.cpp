@@ -76,8 +76,8 @@ void Game::initSystems() {
 	_gameElements.loadGameElements("./resources/scene2D.txt");
 
 
-	_gameElements.createGeometryCube();
-
+	
+	_enemy.init();
 	_spaceShip.init();
 
 }
@@ -169,21 +169,21 @@ void Game::executePlayerCommands() {
 		cout << mouseCoords.x << ", " << mouseCoords.y << endl;
 	}
 
-	if (_inputManager.isKeyPressed(SDLK_w)) {
-		
+	if (_inputManager.isKeyDown(SDLK_w) || _inputManager.isKeyDown(SDLK_UP)) {
+		_spaceShip.moveSpaceShip(2);
 	}
 
-	if (_inputManager.isKeyDown(SDLK_a) || _inputManager.isKeyPressed(SDLK_LEFT)) {
-		_spaceShip.moveSpaceShip(false);
+	if (_inputManager.isKeyDown(SDLK_a) || _inputManager.isKeyDown(SDLK_LEFT)) {
+		_spaceShip.moveSpaceShip(1);
 	}
 
 
-	if (_inputManager.isKeyPressed(SDLK_s)) {
-		
+	if (_inputManager.isKeyDown(SDLK_s) || _inputManager.isKeyDown(SDLK_DOWN)) {
+		_spaceShip.moveSpaceShip(4);
 	}
 
-	if (_inputManager.isKeyDown(SDLK_d) || _inputManager.isKeyPressed(SDLK_RIGHT)) {
-		_spaceShip.moveSpaceShip(true);
+	if (_inputManager.isKeyDown(SDLK_d) || _inputManager.isKeyDown(SDLK_RIGHT)) {
+		_spaceShip.moveSpaceShip(3);
 	}
 	
 
@@ -193,7 +193,9 @@ void Game::executePlayerCommands() {
 * Update the game objects based on the physics
 */
 void Game::doPhysics() {
-	_gameElements.getGameElement(BLUE_CUBE)._translate.x+=0.01;
+
+	_enemy.updateEnemyPosition();
+	_spaceShip.updateRotation();
 	
 }
 
