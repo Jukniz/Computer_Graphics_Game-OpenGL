@@ -35,10 +35,11 @@ Game* Game::getInstance(std::string windowTitle, int screenWidth, int screenHeig
 * @param screenHeight is the window height
 */
 Game::Game(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS) :
-	_windowTitle(windowTitle), 
-	_screenWidth(screenWidth), 
+	_windowTitle(windowTitle),
+	_screenWidth(screenWidth),
 	_screenHeight(screenHeight),
-	_gameState(GameState::INIT), 
+	_gameState(GameState::INIT),
+	_camera(screenWidth, screenHeight),
 	_fpsLimiter(enableLimiterFPS, maxFPS, printFPS) {
 
 
@@ -233,7 +234,17 @@ void Game::renderGame() {
 		_openGLBuffers.sendDataToGPU(_gameElements.getData(currentElement._objectType), _gameElements.getNumVertices(currentElement._objectType));
 			
 	}
+	//Camera
+	/*
+	GLuint modelMatrixUniform = _colorProgram.getUniformLocation("modelMatrix");
+	glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
+	GLuint viewMatrixUniform = _colorProgram.getUniformLocation("viewMatrix");
+	glUniformMatrix4fv(viewMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera._viewMatrix));
+
+	GLuint projectionMatrixUniform = _colorProgram.getUniformLocation("projectionMatrix");
+	glUniformMatrix4fv(projectionMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera._projectionMatrix));
+	*/
 	//Unbind the program
 	_colorProgram.unuse();
 

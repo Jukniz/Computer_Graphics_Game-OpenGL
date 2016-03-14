@@ -17,6 +17,7 @@
 #include "InputManager.h"
 #include "SpaceShip.h"
 #include "Enemy.h"
+#include "Camera.h"
 
 //Game has four possible states: INIT (Preparing environment), PLAY (Playing), EXIT (Exit from the game) or MENU (Game menu)
 enum class GameState{INIT, PLAY, EXIT, MENU};
@@ -50,6 +51,7 @@ class Game {
 		OpenGLBuffers _openGLBuffers;	//Manage the openGL buffers
 		Geometry _gameElements;			//Manage the game elements
 		InputManager _inputManager;		//Manage the input devices
+		Camera _camera;
 
 		SpaceShip _spaceShip;           //Space Ship
 		Enemy _enemy;					//Enemy

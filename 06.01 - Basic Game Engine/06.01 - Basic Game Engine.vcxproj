@@ -163,6 +163,7 @@
     <Text Include="resources\shaders\vertex-shader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="ErrorManagement.cpp" />
     <ClCompile Include="Ex06.01-Main.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="ErrorManagement.h" />
     <ClInclude Include="FPSLimiter.h" />
