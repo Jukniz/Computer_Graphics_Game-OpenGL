@@ -15,7 +15,9 @@ Geometry::Geometry(){
 
 
 Geometry::~Geometry(){
-	
+	for (int i = 0; i < NUMBASICOBJECTS; i++) {
+		delete _verticesData[i];
+	}
 }
 
 /*
