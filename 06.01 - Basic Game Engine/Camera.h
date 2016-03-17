@@ -20,7 +20,13 @@ private:
 
 public:
 	void init();
+	void orthographicProjection();
+	void perspectiveProjection();
+
+
 	Camera(int screenWidth, int screenHeight);
 	~Camera();
+	glm::mat4& getProjectionMatrix();
+	glm::mat4& getViewMatrix();
 };
 

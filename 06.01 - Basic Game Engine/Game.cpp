@@ -99,7 +99,9 @@ void Game::initShaders() {
 	_colorProgram.linkShaders();
 		//Bind the uniform variables. You must enable shaders before gettting the uniforme variable location
 	_colorProgram.use();
-	modelMatrixUniform = _colorProgram.getUniformLocation("modelMatrix");
+	_modelMatrixUniform = _colorProgram.getUniformLocation("modelMatrix");
+	_viewMatrixUniform= _colorProgram.getUniformLocation("viewMatrix");
+	_projectionMatrixUniform = _colorProgram.getUniformLocation("projectionMatrix");
 	_colorProgram.unuse();
 }
 
@@ -209,42 +211,36 @@ void Game::renderGame() {
 		//Bind the GLSL program. Only one code GLSL can be used at the same time
 	_colorProgram.use();
 
+	_camera.perspectiveProjection();
 
 	GameObject currentElement; // Variable temporal
 	
+	glUniformMatrix4fv(_viewMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera.getViewMatrix()));	
+	glUniformMatrix4fv(_projectionMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera.getProjectionMatrix()));
+
 	//For each one of the elements: Each object MUST BE RENDERED based on its position, rotation and scale data
 	for (int i = 0; i < _gameElements.getNumGameElements(); i++) {			
 		currentElement = _gameElements.getGameElement(i);
 
-
 		glm::mat4 modelMatrix; //Indentity matrix
+		
 		modelMatrix = glm::translate(modelMatrix, currentElement._translate);
-
 		//The fvec3 rotation vector only has sense if angle is different to 0
 		if (currentElement._angle != 0) {
-
 			modelMatrix = glm::rotate(modelMatrix, glm::radians(currentElement._angle), currentElement._rotation);
 		}
 
 		modelMatrix = glm::scale(modelMatrix, currentElement._scale);
 		//Pass the model matrix
 		
-		glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+		glUniformMatrix4fv(_modelMatrixUniform, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
 		_openGLBuffers.sendDataToGPU(_gameElements.getData(currentElement._objectType), _gameElements.getNumVertices(currentElement._objectType));
 			
 	}
-	//Camera
-	/*
-	GLuint modelMatrixUniform = _colorProgram.getUniformLocation("modelMatrix");
-	glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
-	GLuint viewMatrixUniform = _colorProgram.getUniformLocation("viewMatrix");
-	glUniformMatrix4fv(viewMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera._viewMatrix));
 
-	GLuint projectionMatrixUniform = _colorProgram.getUniformLocation("projectionMatrix");
-	glUniformMatrix4fv(projectionMatrixUniform, 1, GL_FALSE, glm::value_ptr(_camera._projectionMatrix));
-	*/
+	
 	//Unbind the program
 	_colorProgram.unuse();
 

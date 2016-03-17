@@ -56,8 +56,9 @@ class Game {
 		SpaceShip _spaceShip;           //Space Ship
 		Enemy _enemy;					//Enemy
 
-		GLuint modelMatrixUniform;
-
+		GLuint _modelMatrixUniform;
+		GLuint _viewMatrixUniform;
+		GLuint _projectionMatrixUniform;
 
 
 		Game(std::string windowTitle, int screenWidth, int screenHeight, bool enableLimiterFPS, int maxFPS, bool printFPS);	//Constructor

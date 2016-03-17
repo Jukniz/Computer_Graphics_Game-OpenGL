@@ -1,7 +1,15 @@
 #include "Camera.h"
 
 
+Camera::Camera(int screenWidth, int screenHeight)
+{
+	_aspectRatio = (screenWidth / screenHeight);
+}
 
+
+Camera::~Camera()
+{
+}
 
 void Camera::init()
 {
@@ -10,8 +18,8 @@ void Camera::init()
 	_projectionWidth = 30;
 	_projectionHeight = 30;
 	_FOV = 45;
-	_cameraPos = glm::vec3(10.0, 10.0, 10.0);
-	_cameraFront = glm::vec3(0, 0, 0);
+	_cameraPos = glm::vec3(0.0, -5.0, 5.0); //Punto donde esta
+	_cameraFront = glm::vec3(0, 0, 0); //Punto donde mira
 	_cameraUp = glm::vec3(0, 0, 1);
 
 	glm::vec3 cameraDirection = glm::normalize(_cameraPos - _cameraFront);
@@ -21,14 +29,26 @@ void Camera::init()
 	_viewMatrix = glm::lookAt(_cameraPos, _cameraFront, _cameraUp);
 }
 
+void Camera::orthographicProjection()
+{ 
+	//_projectionHeight = glm::ortho(-_projectionWidth / 2, _projectionWidth / 2, -_projectionHeight / 2, _projectionHeight / 2, _near, _far);
+}
 
-
-Camera::Camera(int screenWidth, int screenHeight)
-{
-	_aspectRatio = (screenWidth / screenHeight);
+void Camera::perspectiveProjection()
+{	
+	//_projectionMatrix = glm::perspective(_FOV, _aspectRatio, _near, _far); (Esto falla!!)
 }
 
 
-Camera::~Camera()
+
+
+
+glm::mat4 & Camera::getProjectionMatrix()
 {
+	return _projectionMatrix;
+}
+
+glm::mat4 & Camera::getViewMatrix()
+{
+	return _viewMatrix;
 }
